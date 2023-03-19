@@ -21,6 +21,7 @@ class UsersdataController extends Controller
     }
 
     function adddata(Request $req){
+
         if($req->ismethod('post')){
             $data = $req->all();
             $user = new User();
@@ -38,10 +39,10 @@ class UsersdataController extends Controller
                 'email.email'=>'emaileee is required',
                 'password.required'=>'paddword is required',
             ];
-            $validator = Validator::make($data,$rules,$custommessage);
-            if($validator->fails()){
-                return response()->json($validator->errors(),422);
-            }
+            // $validator = Validator::make($data,$rules,$custommessage);
+            // if($validator->fails()){
+            //     return response()->json($validator->errors(),422);
+            // }
 
             $user->name = $req->name;
             $user->email = $req->email;
@@ -77,9 +78,24 @@ class UsersdataController extends Controller
         $user->save();
         $message = 'user password succesfully update';
         return response()->json(['message'=>$message],200);
-
-
     }
 
+
+  function deletedata($id){
+     User::findOrFail($id)->delete();
+     $message = 'user successfully delete';
+     return response()->json(['message'=>$message],200);
+
+  }
+
+  function deletedatajson(Request $req){
+    if($req->isMethod('delete')){
+        $data = $req->all();
+       $user = User::find($data['id'])->delete();
+        $message = 'user successfully delete';
+        return response()->json(['message'=>$message],200);
+    }
+
+  }
   
 }

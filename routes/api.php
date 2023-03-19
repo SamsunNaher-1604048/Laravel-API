@@ -32,3 +32,12 @@ Route::put('/update-user/{id}',[UsersdataController::class,'userupdate'])->name(
 //update one single data
 Route::patch('/update-single-data/{id}',[UsersdataController::class,'updatesinglerecord'])->name('user.single.record');
 
+//delete api for single user
+
+Route::delete('/delete-single-user/{id}',[UsersdataController::class,'deletedata'])->name('user.delete');
+
+//delete user using json
+
+Route::delete('/delete-data-json',[UsersdataController::class,'deletedatajson'])->name('user.delete.json');
+
+
