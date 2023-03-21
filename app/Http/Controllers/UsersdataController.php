@@ -97,5 +97,17 @@ class UsersdataController extends Controller
     }
 
   }
+
+  function deletemultipleuser($ids){
+    $ids = explode(',',$ids);
+    $users = User::find($ids);
+
+    foreach($users as $user){
+        $user->delete();
+    }
+    
+    $message = 'user successfully delete';
+    return response()->json(['message'=>$message],200);
+  }
   
 }

@@ -40,4 +40,8 @@ Route::delete('/delete-single-user/{id}',[UsersdataController::class,'deletedata
 
 Route::delete('/delete-data-json',[UsersdataController::class,'deletedatajson'])->name('user.delete.json');
 
+// delete data using multiple user
+
+Route::delete('/delete-multipe-user/{ids}',[UsersdataController::class ,'deletemultipleuser'])->name('multi.delete.user');
+
 
